@@ -38,6 +38,6 @@ public class Jugador {
 
     @Override
     public String toString(){
-        return this.nombre+","+this.numero+","+this.posicion+","+this.nombrePais+","+this.seleccion.getCodigoCarrera();
+        return this.nombre+","+this.numero+","+this.posicion+","+this.nombrePais+","+this.seleccion.getNombre();
     }
 }

@@ -3,12 +3,11 @@ package model;
 public class Seleccion {
   private String nombre;
   private int rankingFIFA;
-  private int id;
 
-    public Seleccion(String nombre, int rankingFIFA, int id) {
+
+    public Seleccion(String nombre, int rankingFIFA) {
         this.nombre = nombre;
         this.rankingFIFA = rankingFIFA;
-        this.id = id;
     }
 
     public String getNombre() {
@@ -16,8 +15,5 @@ public class Seleccion {
     }
     public int getRankingFIFA() {
         return rankingFIFA;
-    }
-    public int getId() {
-        return id;
     }
 }

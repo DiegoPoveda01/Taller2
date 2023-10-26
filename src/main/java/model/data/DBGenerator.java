@@ -42,7 +42,6 @@ public class DBGenerator {
         create.createTableIfNotExists("Seleccion")
                 .column("nombre_seleccion",VARCHAR(100))
                 .column("rankingFIFA",INTEGER)
-                .column("id",INTEGER)
                 .constraint(primaryKey("rankingFIFA")).execute();
     }
 

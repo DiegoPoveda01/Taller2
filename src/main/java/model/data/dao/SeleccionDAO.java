@@ -14,13 +14,13 @@ import static org.jooq.impl.DSL.table;
 
 public class SeleccionDAO {
     public static void agregarSeleccion(DSLContext query, Seleccion seleccion){
-        Table tablaSeleccion= table(name("Seleccion"));
-        Field[] columnas = tablaSeleccion.fields("nombre_seleccion","rankingFIFA","id");
-        query.insertInto(tablaSeleccion, columnas[0], columnas[1],columnas[2])
-                .values(seleccion.getNombre(), seleccion.getRankingFIFA(), seleccion.getId());
+        Table tablaSeleccion= table(name("seleccion"));
+        Field[] columnas = tablaSeleccion.fields("nombre_seleccion","rankingFIFA");
+        query.insertInto(tablaSeleccion, columnas[0], columnas[1])
+                .values(seleccion.getNombre(), seleccion.getRankingFIFA()).execute();
     }
     public static boolean validarExistenciaSeleccion(DSLContext query,String columnaTabla, Object dato){
-        Result resultados = query.select().from(DSL.table("Seleccion")).where(DSL.field(columnaTabla).eq(dato)).fetch();
+        Result resultados = query.select().from(DSL.table("seleccion")).where(DSL.field(columnaTabla).eq(dato)).fetch();
         if(resultados.size()>=1){
             return true;
         }
@@ -29,11 +29,10 @@ public class SeleccionDAO {
         }
     }
     public static Seleccion buscarSeleccion(DSLContext query, Object dato){
-        Result resultados= (Result) buscarSeleccion(query,"id",dato);
+        Result resultados= (Result) buscarSeleccion(query,"nombre_seleccion",dato);
         String nombreSelecion = (String) resultados.getValue(0,"nombre_seleccion");
         int rankingFIFA = (int) resultados.getValue(0,"rankingFIFA");
-        int id = (int) resultados.getValue(0,"id");
-        return new Seleccion(nombreSelecion,rankingFIFA,id);
+        return new Seleccion(nombreSelecion,rankingFIFA);
     }
 
     public static List buscarSeleccion(DSLContext query, String columnaTabla, Object dato){
